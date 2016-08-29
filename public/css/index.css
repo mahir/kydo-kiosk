@@ -1,0 +1,13 @@
+body{
+  font-family: 'Asap', Arial, Helvetica, sans-serif;
+  color:white;
+  background:black url(http://s.cdpn.io/16327/texture_bg.jpg) no-repeat 50% 0px;
+  margin:3% 3% 0 3%;
+  overflow:hidden;
+}
+
+#quote{
+  color:#dedede;
+  font-size: 2em;
+  line-height: 2em;
+}
