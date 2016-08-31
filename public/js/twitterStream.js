@@ -9,14 +9,16 @@ function initialize() {
     socket.on('twitter-stream', function (data) {
       console.log(data.text)
       console.log(data)
+      $("#quote").text("")
+      $("#quote").text(data.text)
 
-      $("#quote").append()
+      $("#quote").textillate({ in: { effect: 'flipInY' }});
 
-      $( "#quote" ).append( "<div class="+data.id+">"+data.text+"</div>" )
+      // $("#quote").append( "<div class="+data.id+">"+data.text+"</div>" )
 
-      $("."+data.id)
+      // $("."+data.id)
       // .fitText(0.5)
-      .textillate({ in: { effect: 'flipInY' }});
+      // .textillate({ in: { effect: 'flipInY' }});
 
       // //Add tweet to the heat map array.
       // var tweetLocation = new google.maps.LatLng(data.lng,data.lat);

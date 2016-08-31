@@ -1,13 +1,59 @@
+@font-face {
+	font-family: 'DINMediumCondensed';
+	src: url('/fonts/DINNextLTPro-MediumCond.eot');
+	src: url('/fonts/DINNextLTPro-MediumCond.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/DINNextLTPro-MediumCond.woff') format('woff'),
+		url('/fonts/DINNextLTPro-MediumCond.ttf') format('truetype');
+	/*font-weight: 500;*/
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DINCondensed';
+	src: url('/fonts/DINNextLTPro-Condensed.eot');
+	src: url('/fonts/DINNextLTPro-Condensed.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/DINNextLTPro-Condensed.woff') format('woff'),
+		url('/fonts/DINNextLTPro-Condensed.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DIN';
+	src: url('/fonts/DINNextLTPro-Regular.eot');
+	src: url('/fonts/DINNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/DINNextLTPro-Regular.woff') format('woff'),
+		url('/fonts/DINNextLTPro-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body{
-  font-family: 'Asap', Arial, Helvetica, sans-serif;
-  color:white;
-  background:black url(http://s.cdpn.io/16327/texture_bg.jpg) no-repeat 50% 0px;
-  margin:3% 3% 0 3%;
+  font-family: 'DIN', Arial, Helvetica, sans-serif;
+  /*color:white;*/
+  /*background:black url(http://s.cdpn.io/16327/texture_bg.jpg) no-repeat 50% 0px;*/
+  /*background:black url(/css/animate-x3.gif) no-repeat 50% 0px;*/
+  /*background:black url(/css/animate-x3.gif);*/
+  /*margin:3% 3% 0 3%;*/
   overflow:hidden;
 }
 
+body::after {
+  content: "";
+  background: url(/css/animate-x3.gif);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
 #quote{
-  color:#dedede;
-  font-size: 2em;
-  line-height: 2em;
+  color:#000;
+  font-size: 3.5em;
+  /*line-height: 3em;*/
+  width: 40%;
+  margin: 10% 5% 5% 5%;
 }

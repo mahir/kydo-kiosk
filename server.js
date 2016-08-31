@@ -30,7 +30,7 @@ io.sockets.on('connection', function (socket) {
 
       //Connect to twitter stream passing in filter for entire world.
       // twit.stream('statuses/filter', {'follow':'736205517987676160'}, function(stream) {
-      twit.stream('statuses/filter', {'track':'javascript'}, function(stream) {
+      twit.stream('statuses/filter', {'track':'#data'}, function(stream) {
           stream.on('data', function(data) {
 
                 console.log(data)
