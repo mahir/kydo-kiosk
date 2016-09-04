@@ -108,7 +108,7 @@ function showCTA() {
 
       }
 
-      setTimeout(removeCTA, 5000);
+      setTimeout(removeCTA, 10000);
 
       
 }
@@ -134,24 +134,26 @@ function showCTA() {
       // console.log(data.text)
       // console.log(data)
 
-      if(data.in_reply_to_status_id_str) {
-        console.log(data.in_reply_to_status_id_str)
-      }
+      // if(data.in_reply_to_status_id_str) {
+      //   console.log(data.in_reply_to_status_id_str)
+      // }
       
-      // to do: cut the img + http links
-
       var tweet = urlRemove(data.text);
       // console.log(tweet);
 
 
 
       if(data.user.id == kydoId) {
-        $("#quote2").hide();
-        $("#quote2").html("")
+        // clean
+        $("#quote2, #tweeter2").hide();
+        $("#quote2, #tweeter2").html("")
+        // load
         $("#quote2").html("<span class='border-center'></span><span>"+tweet+"</span")
-        $("#quote2").fadeIn();
-
         $("#tweeter2").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" - "+data.created_at+"</span")
+        // fade
+        $("#quote2, #tweeter2").fadeIn();
+
+        
 
         if(data.in_reply_to_status_id_str === null){
           $("#quote").html("")
@@ -163,43 +165,22 @@ function showCTA() {
       }
 
       else {
-
-        $("#quote").hide();
-        $("#quote").html("")
+        //clean
+        $("#quote, tweeter").hide();
+        $("#quote, tweeter").html("")
+        //load
         $("#quote").html("<span class='border-center'></span><span>"+tweet+"</span")
-        $("#quote").fadeIn();
-
         $("#tweeter").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" - "+data.created_at+"</span")
-        
+        //fade
+        $("#quote, tweeter").fadeIn();
+
+        //clean 2nd slot 
         $("#quote2").html("")
         $("#tweeter2").html("")
         
         // slot=1;
 
       }
-
-      // $("#quote").textillate({ in: { effect: 'flipInY' }});
-
-      // $("#quote").append( "<div class="+data.id+">"+data.text+"</div>" )
-
-      // $("."+data.id)
-      // .fitText(0.5)
-      // .textillate({ in: { effect: 'flipInY' }});
-
-      // //Add tweet to the heat map array.
-      // var tweetLocation = new google.maps.LatLng(data.lng,data.lat);
-      // liveTweets.push(tweetLocation);
-
-      // //Flash a dot onto the map quickly
-      // var image = "css/small-dot-icon.png";
-      // var marker = new google.maps.Marker({
-      //   position: tweetLocation,
-      //   map: map,
-      //   icon: image
-      // });
-      // setTimeout(function(){
-      //   marker.setMap(null);
-      // },600);
 
     });
 

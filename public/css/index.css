@@ -178,7 +178,7 @@ video#bgvid {
     }    
 
 .profileImg {
-	/*width: 36px;*/
+	width: 36px;
 	padding-right: 8px;
 	margin-top: -10px;
 	float: left;
