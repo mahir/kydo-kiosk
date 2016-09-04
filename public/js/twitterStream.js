@@ -11,7 +11,7 @@ var ctas = ["We all are Kydo.",
 "Let me be your friend.",
 "Let's talk about art.",
 "Let's talk about you.",
-"I can dream."]
+"True or False?"]
 
 var videos = ["Kydo-Transition-01.mp4",
 "Kydo-Transition-02.mp4",
@@ -139,8 +139,21 @@ function showCTA() {
       // }
       
       var tweet = urlRemove(data.text);
+      var tDate = new Date(data.created_at);
       // console.log(tweet);
 
+      function toTimeZone(time, zone) {
+        var format = 'DD/MM/YYYY HH:mm:ss';
+        return moment(time, format).tz(zone).format(format);
+      }
+
+      
+      
+
+      
+
+      // console.log(toTimeZone(data.created_at, "America/Los_Angeles"))
+      // console.log(moment().tz("America/Los_Angeles").format());
 
 
       if(data.user.id == kydoId) {
@@ -149,7 +162,7 @@ function showCTA() {
         $("#quote2, #tweeter2").html("")
         // load
         $("#quote2").html("<span class='border-center'></span><span>"+tweet+"</span")
-        $("#tweeter2").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" - "+data.created_at+"</span")
+        $("#tweeter2").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" &mdash; "+tDate.format("dd.mm.yy HH:MM:ss")+"</span")
         // fade
         $("#quote2, #tweeter2").fadeIn();
 
@@ -170,7 +183,7 @@ function showCTA() {
         $("#quote, tweeter").html("")
         //load
         $("#quote").html("<span class='border-center'></span><span>"+tweet+"</span")
-        $("#tweeter").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" - "+data.created_at+"</span")
+        $("#tweeter").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" &mdash; "+tDate.format("dd.mm.yy HH:MM:ss")+"</span")
         //fade
         $("#quote, tweeter").fadeIn();
 
