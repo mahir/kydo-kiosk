@@ -1,110 +1,180 @@
 function initialize() {
+var ctaDisplay = 0;
+var ctas = ["We all are Kydo.",
+"Talk to me.",
+"I am telling the truth.",
+"Who is Kydo?",
+"What is Kydo?",
+"Meet me.",
+"Provoke me.",
+"Explain yourself to me.",
+"Let me be your friend.",
+"Let's talk about art.",
+"Let's talk about you.",
+"I can dream."]
 
-  var ctas = ["We all are Kydo",
-"Talk to me",
-"I am telling the truth",
-"Who is Kydo",
-"What is Kydo",
-"Meet me",
-"Provoke me",
-"Explain yourself to me",
-"Let me be your friend",
-"Let's talk about art",
-"Let's talk about you",
-"I can dream"]
+var videos = ["Kydo-Transition-01.mp4",
+"Kydo-Transition-02.mp4",
+"Kydo-Transition-03.mp4",
+"Kydo-Transition-04.mp4",
+"Kydo-Transition-05.mp4",
+"Kydo-Transition-06.mp4"]
 
 
+function urlRemove(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function(url) {
+        return '';
+    })
+    // or alternatively
+    // return text.replace(urlRegex, '<a href="$1">$1</a>')
+}
 
 
   var streamSwitch = 0;
-  var timer = [10000, 3000, 5000];
+  var timer = [10000, 2000, 5000];
   var timerTotal = timer[0]+timer[1]+timer[2];
-  var lights=$('#first, #second, #third');
+
+  var kydoId= 772181462066012200;
+  
   $('#first, #second, #third').hide();
 
 
 
 
-  var doStuff = function () {
-
+  var startScreens = function () {
     // Start
     console.log("start")
     $('#first, #second, #third').hide();
-    $("#quote, #quote2").fadeIn()
     $('#first').fadeIn();
+  };
+  
+  startScreens();
 
-    // Transition
-    setTimeout(function () {  
-      console.log("second");
-      $('#first, #second, #third').hide();
-      $("#quote, #quote2").hide()
-      $('#second').fadeIn();
-      }, timer[0]);
+function showVideo() {  
+      
 
-    // CTA
-    setTimeout(function () {  
-      console.log("last")
+      if (ctaDisplay == 0) {
+        console.log("video is on");
+        $('#first, #second, #third').hide();
+
+        $('#second').html('<video playsinline autoplay muted loop poster="" id="bgvid"><source src="video/'+videos[Math.floor(Math.random()*videos.length)]+'" type="video/mp4">')
+        $('#second').fadeIn();
+
+        function removeVideo() {
+          console.log("video is off");
+
+          $('#first, #second, #third').fadeOut();
+          $('#first').fadeIn();
+
+        }
+
+        setTimeout(removeVideo, 1500);
+      }
+
+      else {
+        console.log("video is bypassed")
+      }
+
+      
+}
+
+
+(function loop() {
+    var rand = Math.floor(Math.random() * 50000) + 40000;
+    setTimeout(function() {
+            console.log()
+            showVideo();
+            loop();  
+    }, rand);
+}());
+
+function showCTA() {  
+      console.log("CTA is on");
+      ctaDisplay = 1;
       $('#first, #second, #third').hide();
-      $("#quote, #quote2").hide()
+
       $("#cta").text(ctas[Math.floor(Math.random()*ctas.length)])
       $('#third').fadeIn();
-      ;}, timer[0]+timer[1]);
-  
 
-    // jQuery.each(lights, function(i) { 
-    //     var el=$(this);
-    //     setTimeout(function() { 
-    //       console.log(i,timer[i])
-    //         $('#first, #second, #third').hide();
-    //         $("#quote").hide()
+      
+      function removeCTA() {
+        console.log("CTA is off");
 
-    //         // turn on if it's the tweet page
-    //         if(i==0) {$("#quote").show()};
-    //         el.fadeIn()
-    //     }, timer[i]); 
-    // });
+        $('#first, #second, #third').fadeOut();
+        $('#first').fadeIn();
 
-    setTimeout(doStuff, timerTotal);
-};
-doStuff();
+        ctaDisplay = 0;
 
-// console.log(timerTotal)
+      }
 
+      setTimeout(removeCTA, 5000);
 
-  // removeListener = function('twitter-stream', data)
-  // removeAllListeners = function('twitter-stream')
+      
+}
+
+(function loop2() {
+    var rand = 150000;
+    setTimeout(function() {
+            showCTA();
+            loop2();  
+    }, rand);
+}());
 
 
   if(io !== undefined) {
     // Storage for WebSocket connections
     var socket = io.connect('/');
 
-    var slot = 0;
+    var slot = 1;
 
     // This listens on the "twitter-steam" channel and data is 
     // received everytime a new tweet is receieved.
     socket.on('twitter-stream', function (data) {
-      console.log(data.text)
-      console.log(data)
+      // console.log(data.text)
+      // console.log(data)
+
+      if(data.in_reply_to_status_id_str) {
+        console.log(data.in_reply_to_status_id_str)
+      }
+      
       // to do: cut the img + http links
 
+      var tweet = urlRemove(data.text);
+      // console.log(tweet);
 
-      if(slot == 1) {
+
+
+      if(data.user.id == kydoId) {
+        $("#quote2").hide();
         $("#quote2").html("")
-        $("#quote2").html("<span class='border-center'></span><span>"+data.text+"</span")
-        // $("#quote2").fadeIn();
+        $("#quote2").html("<span class='border-center'></span><span>"+tweet+"</span")
+        $("#quote2").fadeIn();
 
-        slot=0;
+        $("#tweeter2").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" - "+data.created_at+"</span")
+
+        if(data.in_reply_to_status_id_str === null){
+          $("#quote").html("")
+          $("#tweeter").html("")
+        }
+
+        // slot=0;
 
       }
 
       else {
 
+        $("#quote").hide();
         $("#quote").html("")
-        $("#quote").html("<span class='border-center'></span><span>"+data.text+"</span")
-        // $("#quote").fadeIn();
+        $("#quote").html("<span class='border-center'></span><span>"+tweet+"</span")
+        $("#quote").fadeIn();
+
+        $("#tweeter").html("<div class='profileImg'><img src='"+data.user.profile_image_url+"' width=48></div><span>"+data.user.screen_name+" - "+data.created_at+"</span")
         
-        slot=1;
+        $("#quote2").html("")
+        $("#tweeter2").html("")
+        
+        // slot=1;
 
       }
 

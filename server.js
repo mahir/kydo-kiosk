@@ -29,13 +29,20 @@ io.sockets.on('connection', function (socket) {
     if(stream === null) {
 
       //Connect to twitter stream passing in filter for entire world.
+      // Follow 'Bart'
       // twit.stream('statuses/filter', {'follow':'736205517987676160'}, function(stream) {
-      twit.stream('statuses/filter', {'track':'#data'}, function(stream) {
+      
+      // Follow keyword 'Kendrick Zeus'
+      // twit.stream('statuses/filter', {'follow':'772181462066012160'}, function(stream) {
+      
+      // Follow keyword 'Art' 
+      twit.stream('statuses/filter', {'track':'#art'}, function(stream) {
           stream.on('data', function(data) {
 
                 console.log(data)
                 var outputPoint = data;
                 socket.emit('twitter-stream', outputPoint);
+
               // Does the JSON result have coordinates
               // if (data.coordinates){
               //   if (data.coordinates !== null){
