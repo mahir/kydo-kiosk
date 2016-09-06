@@ -58,18 +58,19 @@ function showVideo() {
         console.log("video is on");
         $('#first, #second, #third').hide();
 
-        $('#second').html('<video playsinline autoplay muted loop poster="" id="bgvid"><source src="video/'+videos[Math.floor(Math.random()*videos.length)]+'" type="video/mp4">')
+        $('#second').html('<video playsinline autoplay muted loop poster="" id="bgvid"><source src="video/'+videos[Math.floor(Math.random()*videos.length)]+'" type="video/mp4"></video>')
         $('#second').fadeIn();
 
         function removeVideo() {
           console.log("video is off");
 
           $('#first, #second, #third').fadeOut();
+          $('#second').html('');
           $('#first').fadeIn();
 
         }
 
-        setTimeout(removeVideo, 1500);
+        setTimeout(removeVideo, 1000);
       }
 
       else {

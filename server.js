@@ -33,10 +33,11 @@ io.sockets.on('connection', function (socket) {
       // twit.stream('statuses/filter', {'follow':'736205517987676160'}, function(stream) {
       
       // Follow keyword 'Kendrick Zeus'
-      twit.stream('statuses/filter', {'follow':'772181462066012160'}, function(stream) {
+      // twit.stream('statuses/filter', {'follow':'772181462066012160'}, function(stream) {
       
       // Follow keyword 'Art' 
-      // twit.stream('statuses/filter', {'track':'#art'}, function(stream) {
+      twit.stream('statuses/filter', {'track':'#art'}, function(stream) {
+      // twit.stream('statuses/filter', {'track':'#trump'}, function(stream) {
           stream.on('data', function(data) {
 
                 console.log(data)
