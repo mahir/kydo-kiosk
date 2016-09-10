@@ -56,10 +56,13 @@ function showVideo() {
       
 
       if (ctaDisplay == 0) {
-        console.log("video is on");
+        var selectedVid = Math.floor(Math.random()*videos.length);
+        console.log("video is on : " + selectedVid);
         $('#first, #second, #third').hide();
 
-        $('#second').html('<video playsinline autoplay muted loop poster="" id="bgvid"><source src="video/'+videos[Math.floor(Math.random()*videos.length)]+'" type="video/mp4"></video>')
+
+
+        $('#second').html('<video playsinline autoplay muted loop poster="" id="bgvid"><source src="video/'+videos[selectedVid]+'" type="video/mp4"></video>')
         $('#second').fadeIn();
 
         function removeVideo() {

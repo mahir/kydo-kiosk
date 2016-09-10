@@ -54,9 +54,9 @@ body{
 
 .quote {
   color:#000;
-  font-size: 52px;
+  font-size: 3.5em;
   text-transform: uppercase;
-  line-height: 56px;
+  line-height: 1em;
   width: 30%;
   /*border: solid 1px red;*/
 }
@@ -76,7 +76,7 @@ body{
 .tweeter {
   font-family: 'DIN', Arial, Helvetica, sans-serif;
   color:#000;
-  font-size: 20px;
+  font-size: 1.25em;
   padding-left: 3px;
 }
 
@@ -96,9 +96,9 @@ body{
 #cta-box { 
   position: fixed;
   color:#fff;
-  font-size: 180px;
+  font-size: 8em;
   text-transform: uppercase;
-  line-height: 160px;
+  line-height: 1em;
   width: 40%;
   left: 50%;
   top: 25%;
@@ -147,8 +147,8 @@ video#bgvid {
 }
 
 .border-center { 
-        width: 100px;
-        margin-right: 100px;
+        width: 75px;
+        margin-right: 75px;
         padding-right: 15px; 
         position: relative;
     }
@@ -157,14 +157,14 @@ video#bgvid {
     position: absolute;
     bottom: 60%;
     border-bottom: 2px solid black;
-    width: 100px;
+    width: 75px;
     z-index:0;
 }
 
 
 .border-center2 { 
-            width: 300px;
-            margin-right: 300px;
+            width: 200px;
+            margin-right: 200px;
             padding-right: 35px; 
             position: relative;
         }
@@ -173,7 +173,7 @@ video#bgvid {
         position: absolute;
         bottom: 55%;
         border-bottom: 2px solid white;
-        width: 300px;
+        width: 200px;
         z-index:0;
     }    
 

@@ -18,7 +18,15 @@ var videos = ["Kydo-Transition-01.mp4",
 "Kydo-Transition-03.mp4",
 "Kydo-Transition-04.mp4",
 "Kydo-Transition-05.mp4",
-"Kydo-Transition-06.mp4"]
+"Kydo-Transition-06.mp4",
+"Kydo-Transition-07.mp4",
+"Kydo-Transition-08.mp4",
+"Kydo-Transition-09.mp4",
+"Kydo-Transition-10.mp4",
+"Kydo-Transition-11.mp4",
+"Kydo-Transition-12.mp4",
+"Kydo-Transition-13.mp4",
+"Kydo-Transition-14.mp4"]
 
 
 function urlRemove(text) {
@@ -35,7 +43,7 @@ function urlRemove(text) {
   var timer = [10000, 2000, 5000];
   var timerTotal = timer[0]+timer[1]+timer[2];
 
-  var kydoId= 772181462066012200;
+  var kydoId= 23085248;
   
   $('#first, #second, #third').hide();
 
@@ -55,10 +63,12 @@ function showVideo() {
       
 
       if (ctaDisplay == 0) {
-        console.log("video is on");
+        var selectedVid = Math.floor(Math.random()*videos.length);
+        console.log("video is on : " + videos[selectedVid]);
+        
         $('#first, #second, #third').hide();
 
-        $('#second').html('<video playsinline autoplay muted loop poster="" id="bgvid"><source src="video/'+videos[Math.floor(Math.random()*videos.length)]+'" type="video/mp4"></video>')
+        $('#second').html('<video playsinline autoplay muted loop poster="" preload="auto" id="bgvid"><source src="video/'+videos[selectedVid]+'" type="video/mp4"></video>')
         $('#second').fadeIn();
 
         function removeVideo() {
